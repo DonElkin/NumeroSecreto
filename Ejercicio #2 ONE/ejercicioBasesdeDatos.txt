@@ -1,0 +1,115 @@
+CREATE TABLE teatro 
+{
+    nombreTeatro VARCHAR(20) PRIMARY KEY,
+    direccionTeatro VARCHAR(30) NOT NULL,
+    telefonoTeatro NUMBER(10) NOT NULL,
+    emailTeatro VARCHAR(35) NOT NULL,
+    paginaWebTeatro VARCHAR(100) NOT NULL,
+    tipoTeatro VARCHAR(10) NOT NULL
+};
+
+
+CREATE TABLE versionxTeatro
+{
+    fechaInicioVersionTeatro DATE PRIMARY KEY,
+    fechaFinversionxTeatro DATE NOT NULL,
+    aficheversionxTeatro VARCHAR(20) NOT NULL,
+    videoVersionxTeatro VARCHAR(20) NOT NULL,
+    valorContratoVersionxTeatro NUMBER(21, 2) NOT NULL,
+};
+
+
+CREATE TABLE version
+{
+    fechaVersion DATE PRIMARY KEY,
+    documentoVersion NUMBER(25) NOT NULL,
+};
+
+
+CREATE TABLE obra
+{
+    codigoObra NUMBER(10) PRIMARY KEY,
+    nombreObra VARCHAR(10) NOT NULL,
+    autorObra VARCHAR(20) NOT NULL,
+    guionObra VARCHAR(1000) NOT NULL,
+    tipoObra VARCHAR(20) NOT NULL,
+};
+
+
+CREATE TABLE personaje 
+{
+    nombrePersonaje VARCHAR(20) PRIMARY KEY,
+    descripcionPersonaje VARCHAR(100) NOT NULL,
+};
+
+
+CREATE TABLE temporadaxActor
+{
+    
+};
+
+
+CREATE TABLE remplazo
+{
+    
+};
+
+
+CREATE TABLE actor
+{
+    cedulaActor NUMBER(15) PRIMARY KEY,
+    nombreActor VARCHAR(10) NOT NULL,
+    fechaNacimientoActor DATE NOT NULL,
+    sexoActor VARCHAR(10) NOT NULL,
+    tipoPapelFotoActor VARCHAR(20) NOT NULL,
+};
+
+
+CREATE TABLE director
+{
+    cedulaDirector NUMBER(15) PRIMARY KEY,
+    nombreDirector VARCHAR(15) NOT NULL,
+    universidadDirector VARCHAR(25) NOT NULL,
+};
+
+
+CREATE TABLE funcion
+{
+    codigoFuncion NUMBER(20) PRIMARY KEY,
+    fechaFuncion DATE NOT NULL,
+    horaFuncion DATE NOT NULL,
+};
+
+
+CREATE TABLE benefica
+{
+    codBenefica NUMBER(20) PRIMARY KEY REFERENCES funcion,
+    porcentajeBenefica NUMBER(10, 2) NOT NULL,
+    FOREIGN KEY nitInstitucionBenefica 
+};
+
+
+CREATE TABLE tiquete
+{
+    numeroTiquete NUMBER(15) PRIMARY KEY,
+    valorTiquete NUMBER(20, 2) NOT NULL,
+    CHECK ((nit IS NULL AND cedula IS NOT NULL)
+            OR
+            (nit IS NOT NULL AND cedula IS NULL)
+            )
+};
+
+
+CREATE TABLE cliente
+{
+    cedulaCliente NUMBER(15) PRIMARY KEY,
+    nombreCliente VARCHAR(25) NOT NULL,                               
+    fechaNacimientoCliente DATE NOT NULL,
+};
+
+
+CREATE TABLE institucion
+{
+    nitInstitucion NUMBER(15) PRIMARY KEY,
+    nombreInstitucion VARCHAR(15) NOT NULL,
+};
